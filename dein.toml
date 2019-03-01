@@ -1,0 +1,32 @@
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'fholgado/minibufexpl.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'vim-scripts/YankRing.vim'
+
+[[plugins]]
+repo = 'vim-scripts/rails.vim'
+
+[[plugins]]
+repo = 'vim-scripts/vim-coffee-script'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'othree/yajs.vim'
