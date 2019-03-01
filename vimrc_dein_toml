@@ -7,35 +7,20 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/siru001/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/t-watanabe/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/siru001/.cache/dein')
-  call dein#begin('/Users/siru001/.cache/dein')
+if dein#load_state('/Users/t-watanabe/.cache/dein')
+  call dein#begin('/Users/t-watanabe/.cache/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/siru001/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('/Users/t-watanabe/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   let s:toml_dir = $HOME . '/.vim_config'
   let s:toml = s:toml_dir . '/dein.toml'
 
   call dein#load_toml(s:toml, {'lazy': 0})
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-" call dein#add('tpope/vim-fugitive')
-" call dein#add('tpope/vim-endwise')
-" call dein#add('tpope/vim-rails')
-" call dein#add('tpope/vim-surround')
-" call dein#add('fholgado/minibufexpl.vim')
-" call dein#add('Shougo/unite.vim')
-" call dein#add('vim-scripts/YankRing.vim')
-" call dein#add('vim-scripts/rails.vim')
-" call dein#add('vim-scripts/vim-coffee-script')
-" call dein#add('pangloss/vim-javascript')
-" call dein#add('othree/yajs.vim')
 
   " Required:
   call dein#end()
