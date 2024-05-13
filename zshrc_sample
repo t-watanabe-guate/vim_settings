@@ -1,0 +1,79 @@
+## .zshrc
+
+# git-completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit
+setopt auto_cd
+setopt nonomatch
+
+# ヒストリに保存するコマンド
+HISTSIZE=1000000
+# ヒストリに保存するコマンドの最大数
+HISTFILESIZE=5000000
+# 入力が最後のヒストリと一致する場合は記録しない
+HISTCONTROL=ignoredups
+export HISTSIZE HISTFILESIZE HISTCONTROL
+
+# less のステータス行にファイル名と行数、いま何%かを表示するようにする。
+export LESS='-R -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+# これを設定しないと日本語がでない less もあるので一応入れておく。
+export JLESSCHARSET=japanese-ujis
+
+# ヒストリにサーチ機能を付加 => これはzshでエラーになる
+#bind '"\e[A": history-search-backward'
+#bind '"\e[0A": history-search-backward'
+#bind '"\e[B": history-search-forward'
+#bind '"\e[0B": history-search-forward'
+
+autoload -Uz colors
+colors
+
+PS1="%F{2}[%n@%m %C]%f%% "
+
+# Aliases
+alias ll='ls -la'
+alias gitt='git'
+alias gst='git st'
+alias gad='git add'
+alias ls='ls -G'
+alias vi='nvim'
+
+alias ..='cd ..'
+alias ..2='cd ../../'
+alias ..3='cd ../../../'
+alias ..4='cd ../../../../'
+
+function parse_git_dirty {
+[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+function parse_git_branch {
+ git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' formats '%b'
+# precmd () {
+#  setopt promptsubst
+#  vcs_info;
+#  echo ${vcs_info_msg_0_};
+#}
+
+precmd() {
+  RPROMPT="$(__git_ps1 "[%s]")"
+}
+
+source ~/.zsh/git-prompt.sh
+#GIT_PS1_SHOWDIRTYSTATE=true
+#GIT_PS1_SHOWUNTRACKEDFILES=true
+#GIT_PS1_SHOWSTASHSTATE=true
+#GIT_PS1_SHOWUPSTREAM=auto
+setopt PROMPT_SUBST
+setopt TRANSIENT_RPROMPT
+export PS1="%F{2}[%n@%m %C]%f%% "
+#export PS1="%F{2}[%n@%m %C]%f$(__git_ps1 "[%s]")%% "
+# ここまだ上手く動かない
+#export PS1="%F{2}[%n@%m %C]%f%% "
+#RPROMPT="[${vcs_info_msg_0_}]"
+RPROMPT="$(__git_ps1 "[%s]")"
+
+#export PS1="%F{2}[%n@%m %C]%%%f$(parse_git_branch)%% "
